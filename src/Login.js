@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { validation } from "./utils/validations";
 
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
+  const [errormsg, seterrormsg] = useState(null);
+
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const validate = (e) => {
+    // validation();
+    const err = validation(emailRef.current.value, passwordRef.current.value);
+    seterrormsg(err);
+  };
 
   return (
     <div className="text-white">
@@ -13,33 +24,42 @@ const Login = () => {
       </div>
       <div className="absolute right-0 top-0 bg-gradient-to-b bg-slate-950 bg-opacity-50 w-full h-full"></div>
       <div className="absolute top-0 mx-[40%] mt-[10%] w-96 mx- bg-gradient-to-b bg-black bg-opacity-80 flex flex-col flex-wrap z-10 p-2">
-        <form className="z-10 flex flex-col flex-wrap p-8 ">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="z-10  flex flex-col flex-wrap p-8 "
+        >
           <h1 className="text-2xl font-bold ">
             {isSignin ? " Sign In" : " Sign Up"}
           </h1>
 
           <input
             type="email"
+            ref={emailRef}
             placeholder="Email"
-            className="my-4 p-3 rounded-md"
+            className="my-4 p-3 text-black rounded-md"
           />
 
           {!isSignin && (
             <input
               type="text"
               placeholder="username"
-              className="my-4 p-3 rounded-md"
+              className="my-4 p-3 text-black rounded-md"
             />
           )}
           <input
+            ref={passwordRef}
             type="password"
             placeholder="password"
-            className="my-4 p-3 rounded-md"
+            className="my-4 p-3 text-black rounded-md"
           />
 
-          <button className="bg-red-600 my-4 p-3 rounded-md">
+          <button
+            onClick={() => validate()}
+            className="bg-red-600 my-4 p-3 rounded-md"
+          >
             {isSignin ? " Sign In" : " Sign Up"}
           </button>
+          {errormsg && <p className="text-red-700">{errormsg}</p>}
           <h3
             className="cursor-pointer"
             onClick={(e) => setisSignin(!isSignin)}

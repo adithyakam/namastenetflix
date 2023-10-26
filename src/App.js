@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./Footer";
 import Header from "./Header";
 import Login from "./Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -15,6 +16,7 @@ function App() {
     <div className="">
       <Header />
       <RouterProvider router={approuter}></RouterProvider>
+      <Footer />
     </div>
   );
 }

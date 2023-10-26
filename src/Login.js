@@ -14,7 +14,7 @@ const Login = () => {
       <div className="absolute right-0 top-0 bg-gradient-to-b bg-slate-950 bg-opacity-50 w-full h-full"></div>
       <div className="absolute top-0 mx-[40%] mt-[10%] w-96 mx- bg-gradient-to-b bg-black bg-opacity-80 flex flex-col flex-wrap z-10 p-2">
         <form className="z-10 flex flex-col flex-wrap p-8 ">
-          <h1 className="text-lg font-bold ">
+          <h1 className="text-2xl font-bold ">
             {isSignin ? " Sign In" : " Sign Up"}
           </h1>
 

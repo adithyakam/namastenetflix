@@ -1,5 +1,11 @@
 import React, { useRef, useState } from "react";
 import { validation } from "./utils/validations";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+
+import { auth } from "./utils/firebase";
 
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
@@ -12,6 +18,42 @@ const Login = () => {
     // validation();
     const err = validation(emailRef.current.value, passwordRef.current.value);
     seterrormsg(err);
+    if (err) return;
+
+    if (!isSignin) {
+      createUserWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          seterrormsg(errorCode + ":" + errorMessage);
+          // ..
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          seterrormsg(errorCode + ":" + errorMessage);
+        });
+    }
   };
 
   return (

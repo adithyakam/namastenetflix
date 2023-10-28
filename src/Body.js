@@ -28,22 +28,9 @@ const Body = () => {
     },
   ]);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
-        // ...
-      } else {
-        dispatch(removeUser());
-      }
-    });
-  }, []);
-
   return (
     <div>
       <div className="">
-        <Header />
         <RouterProvider router={approuter}></RouterProvider>
         <Footer />
       </div>

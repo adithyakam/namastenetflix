@@ -3,11 +3,15 @@ import { validation } from "./utils/validations";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 
 import { auth } from "./utils/firebase";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
+import { addUser } from "./Components/Redux/userSlice";
+import { userProfileimage } from "./utils/constants";
 
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
@@ -15,7 +19,11 @@ const Login = () => {
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const unRef = useRef(null);
+
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
   const validate = (e) => {
     // validation();
     const err = validation(emailRef.current.value, passwordRef.current.value);
@@ -31,7 +39,28 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          nav("/browse");
+
+          updateProfile(user, {
+            displayName: unRef.current.value,
+            photoURL: userProfileimage,
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              seterrormsg(errorCode + ":" + errorMessage);
+            });
+
           // ...
         })
         .catch((error) => {
@@ -49,7 +78,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          nav("/browse");
 
           // ...
         })
@@ -63,6 +91,8 @@ const Login = () => {
 
   return (
     <div className="text-white">
+      <Header />
+
       <div>
         <img
           className="w-full h-full "
@@ -89,6 +119,7 @@ const Login = () => {
           {!isSignin && (
             <input
               type="text"
+              ref={unRef}
               placeholder="username"
               className="my-4 p-3 text-black rounded-md"
             />

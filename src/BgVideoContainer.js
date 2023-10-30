@@ -11,7 +11,6 @@ const BgVideoContainer = ({ mainmovie }) => {
 
   //   if (vidId) return;
 
-  console.log(vidId);
   return (
     <div>
       <iframe

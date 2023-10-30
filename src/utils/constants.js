@@ -13,3 +13,5 @@ export const tmdbgetoptions = {
 };
 
 export const tmdbapivid = "https://api.themoviedb.org/3/movie/";
+
+export const tmdbimageurl = "https://image.tmdb.org/t/p/w500/";

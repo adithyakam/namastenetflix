@@ -9,7 +9,7 @@ const MainVideoContainer = () => {
   // console.log(vid);
   const mainmovie = vid[0];
   return (
-    <div>
+    <div className="w-screen">
       <VideoTitle mainmovie={mainmovie} />
       <BgVideoContainer mainmovie={mainmovie} />
     </div>

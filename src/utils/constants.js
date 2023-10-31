@@ -3,6 +3,15 @@ export const userProfileimage =
 
 export const tmdbapinowplaying =
   "https://api.themoviedb.org/3/movie/now_playing?&page=1";
+export const tmdbapipopular =
+  "https://api.themoviedb.org/3/movie/popular?&page=1";
+export const tmdbapitop =
+  "https://api.themoviedb.org/3/movie/top_rated?&page=1";
+
+export const tmdbapiaction = `https://api.themoviedb.org/3/discover/movie?${process.env.REACT_APP_TMDB_READ_ONLY_KEY}&with_genres=28`;
+export const tmdbapihorror = `https://api.themoviedb.org/3/discover/movie?${process.env.REACT_APP_TMDB_READ_ONLY_KEY}&with_genres=27`;
+export const tmdbapiadventure = `https://api.themoviedb.org/3/discover/movie?${process.env.REACT_APP_TMDB_READ_ONLY_KEY}&with_genres=12`;
+export const tmdbapithriller = `https://api.themoviedb.org/3/discover/movie?${process.env.REACT_APP_TMDB_READ_ONLY_KEY}&with_genres=53`;
 
 export const tmdbgetoptions = {
   method: "GET",

@@ -10,6 +10,8 @@ import useHorror from "./hooks/useHorror.js";
 import useAdventure from "./hooks/useAdventure";
 import useThrilleruseThriller from "./hooks/useThriller";
 import useThriller from "./hooks/useThriller";
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
 
 const Browse = () => {
   useNowPlaying();
@@ -18,12 +20,19 @@ const Browse = () => {
   useHorror();
   useAdventure();
   useThriller();
+  const toggleGPT = useSelector((state) => state.gpt);
 
   return (
     <div>
       <Header />
-      <MainVideoContainer />
-      <VideoCategory />
+      {toggleGPT ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainVideoContainer />
+          <VideoCategory />
+        </>
+      )}
     </div>
   );
 };

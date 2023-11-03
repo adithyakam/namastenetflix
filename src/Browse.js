@@ -20,7 +20,7 @@ const Browse = () => {
   useHorror();
   useAdventure();
   useThriller();
-  const toggleGPT = useSelector((state) => state.gpt);
+  const toggleGPT = useSelector((state) => state.gpt.toggle);
 
   return (
     <div>

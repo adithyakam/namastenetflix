@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = false;
+const initialState = {
+  toggle: false,
+};
 
 const gptSlice = createSlice({
   name: "gptSlice",
   initialState,
   reducers: {
     togglegptsearch: (state, action) => {
-      return !state;
+      state.toggle = !state.toggle;
     },
   },
 });

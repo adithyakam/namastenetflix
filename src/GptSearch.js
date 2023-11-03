@@ -1,7 +1,10 @@
 import React from "react";
 import Header from "./Header";
+import { useSelector } from "react-redux";
 
 const GptSearch = () => {
+  const lang = useSelector((state) => state.appconfig.lang);
+
   const onGptSearch = (e) => {
     e.preventDefault();
   };

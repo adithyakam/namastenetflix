@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import logo from "./assets/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "./Components/Redux/userSlice";
@@ -7,12 +7,17 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { togglegptsearch } from "./Components/Redux/gptSlice";
+import { appLanguages } from "./utils/appConfig";
+import { changeLang } from "./Components/Redux/appConfigSlice";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
+  const lang = useSelector((state) => state.appconfig.lang);
+  const isGptenabled = useSelector((state) => state.gpt.toggle);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
+  const languageSelector = useRef();
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -42,7 +47,9 @@ const Header = () => {
         nav("/error");
       });
   };
-
+  const languageSel = () => {
+    dispatch(changeLang(languageSelector.current.value));
+  };
   return (
     <div className="absolute p-10 h-10 z-20 flex justify-between items-center w-full bg-gradient-to-b from-black text-white">
       <div className="">
@@ -50,10 +57,20 @@ const Header = () => {
       </div>
       {user && (
         <div className="flex m-1">
-          <select className="bg-red-600 p-2 rounded-lg ml-2">
-            <option>English</option>
-            <option>Hindi</option>
-          </select>
+          {isGptenabled && (
+            <select
+              className="bg-red-600 p-2 rounded-lg ml-2"
+              onChange={languageSel}
+            >
+              {appLanguages.map((language) => {
+                return (
+                  <option ref={languageSelector} key={language.key}>
+                    {language.title}
+                  </option>
+                );
+              })}
+            </select>
+          )}
           <button
             className="bg-yellow-600 p-2 rounded-lg ml-2"
             onClick={() => dispatch(togglegptsearch())}

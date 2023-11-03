@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import { useSelector } from "react-redux";
+import { applang } from "./utils/appConfig";
 
 const GptSearch = () => {
   const lang = useSelector((state) => state.appconfig.lang);
@@ -26,10 +27,10 @@ const GptSearch = () => {
         >
           <input
             className="col-span-9 row-span-1 row-start-1 p-1 rounded-l-md"
-            placeholder="search the text "
+            placeholder={applang[lang].searchText}
           />
           <button className="text-white col-span-3 row-span-1 row-start-1 rounded-r-md ">
-            Search
+            {applang[lang].search}
           </button>
         </form>
       </div>

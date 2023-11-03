@@ -47,8 +47,8 @@ const Header = () => {
         nav("/error");
       });
   };
-  const languageSel = () => {
-    dispatch(changeLang(languageSelector.current.value));
+  const languageSel = (key) => {
+    dispatch(changeLang(key));
   };
   return (
     <div className="absolute p-10 h-10 z-20 flex justify-between items-center w-full bg-gradient-to-b from-black text-white">
@@ -60,11 +60,15 @@ const Header = () => {
           {isGptenabled && (
             <select
               className="bg-red-600 p-2 rounded-lg ml-2"
-              onChange={languageSel}
+              onChange={(e) => languageSel(e.target.value)}
             >
               {appLanguages.map((language) => {
                 return (
-                  <option ref={languageSelector} key={language.key}>
+                  <option
+                    ref={languageSelector}
+                    key={language.key}
+                    value={language.key}
+                  >
                     {language.title}
                   </option>
                 );

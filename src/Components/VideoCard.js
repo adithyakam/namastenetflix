@@ -1,5 +1,5 @@
 import React from "react";
-import { tmdbapivid, tmdbimageurl } from "./utils/constants";
+import { tmdbapivid, tmdbimageurl } from "../utils/constants";
 
 const VideoCard = ({ movie, main }) => {
   return (

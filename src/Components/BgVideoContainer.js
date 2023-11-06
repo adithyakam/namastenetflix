@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import useBgVideo from "./hooks/useBgVideo";
+import useBgVideo from "../hooks/useBgVideo";
 
 const BgVideoContainer = ({ mainmovie }) => {
   //   console.log(mainmovie);

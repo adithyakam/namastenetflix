@@ -7,12 +7,12 @@ import {
 } from "react-router-dom";
 
 import Footer from "./Footer";
-import Login from "./Login";
+import Login from "../Login";
 import Browse from "./Browse";
-import { auth } from "./utils/firebase";
+import { auth } from "../utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "./Components/Redux/userSlice";
+import { addUser, removeUser } from "./Redux/userSlice";
 
 const Body = () => {
   const dispatch = useDispatch();

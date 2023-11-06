@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import { chatQuery } from "./utils/gptConfig";
-import {
-  addMovieRecomendation,
-  addRecommendationList,
-} from "./Components/Redux/gptSlice";
+import { chatQuery } from "../utils/gptConfig";
+import { addMovieRecomendation, addRecommendationList } from "./Redux/gptSlice";
 import GptSearchRecomendations from "./GptSearchRecomendations";
-import { tmdbapisearch, tmdbgetoptions } from "./utils/constants";
+import { tmdbapisearch, tmdbgetoptions } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
-import { applang } from "./utils/appConfig";
+import { applang } from "../utils/appConfig";
 
 const GptSearchBar = () => {
   const [suggestionquery, setsuggestionquery] = useState("");

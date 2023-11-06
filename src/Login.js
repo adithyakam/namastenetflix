@@ -9,7 +9,7 @@ import {
 import { auth } from "./utils/firebase";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
+import Header from "./Components/Header";
 import { addUser } from "./Components/Redux/userSlice";
 import { userProfileimage } from "./utils/constants";
 

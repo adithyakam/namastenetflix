@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
-import logo from "./assets/logo.svg";
+import logo from "../assets/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, removeUser } from "./Components/Redux/userSlice";
-import { auth } from "./utils/firebase";
+import { addUser, removeUser } from "./Redux/userSlice";
+import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { togglegptsearch } from "./Components/Redux/gptSlice";
-import { appLanguages } from "./utils/appConfig";
-import { changeLang } from "./Components/Redux/appConfigSlice";
+import { togglegptsearch } from "./Redux/gptSlice";
+import { appLanguages } from "../utils/appConfig";
+import { changeLang } from "./Redux/appConfigSlice";
 
 const Header = () => {
   const user = useSelector((state) => state.user);

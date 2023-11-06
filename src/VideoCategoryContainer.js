@@ -9,7 +9,7 @@ const VideoCategoryContainer = ({ title, videos, main }) => {
       } flex  text-white flex-col ml-20 no-scrollbar`}
     >
       <h1 className="text-lg">{title}</h1>
-      <div className="flex overflow-x-scroll">
+      <div className="flex overflow-x-scroll no-scrollbar">
         {videos?.map((movie) => {
           return main ? (
             <VideoCard movie={movie} key={movie.id} main />

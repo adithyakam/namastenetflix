@@ -6,7 +6,6 @@ import GptSearchRecomendations from "./GptSearchRecomendations";
 const GptSearch = () => {
   return (
     <div className="fixed ">
-      <Header />
       <div className="absolute right-0 top-0 bg-gradient-to-b bg-slate-950 bg-opacity-50 w-full h-full"></div>
 
       <div>

@@ -51,12 +51,15 @@ const Header = () => {
     dispatch(changeLang(key));
   };
   return (
-    <div className=" bg-gradient-to-b from-black items-center text-white flex flex-col w-full absolute p-10 h-10 z-20 md:flex md:flex-row md:justify-between md:items-center">
+    <div className="w-screen bg-gradient-to-b from-black items-center text-white flex flex-col w-full absolute p-10 h-10 z-20 md:flex md:flex-row md:justify-between md:items-center">
       <div className="">
-        <img src={logo} className=" p-2" />
+        <img
+          src={logo}
+          className="absolute top-0 left-[25%] md:relative z-10 p-2"
+        />
       </div>
       {user && (
-        <div className="bg-black w-screen flex flex-col md:w-auto md:flex md:flex-row md:m-1">
+        <div className="bg-black absolute  -z-10 top-0 p-14 w-screen flex md:relative md:bg-transparent flex-col md:w-auto md:flex md:flex-row md:m-1">
           {isGptenabled && (
             <select
               className="bg-red-600 m-1 md:mt-0 p-2 rounded-lg ml-2"

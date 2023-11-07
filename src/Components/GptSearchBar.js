@@ -46,9 +46,9 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="absolute top-20 left-[30%]">
+    <div className="absolute top-[50%] md:absolute md:top-20 md:left-[30%]">
       <form
-        className=" bg-black w-96 h-10 grid"
+        className="w-[60%] mx-auto bg-black md:w-96 h-10 grid"
         onSubmit={(e) => onGptSearch(e)}
       >
         <input
@@ -56,7 +56,7 @@ const GptSearchBar = () => {
           placeholder={applang[lang].searchText}
           onChange={(e) => setsuggestionquery(e.target.value)}
         />
-        <button className="text-white col-span-3 row-span-1 row-start-1 rounded-r-md ">
+        <button className=" text-sm p-1 md:text-base md:p-1 text-white bg-black col-span-3 row-span-1 row-start-1 rounded-r-md ">
           {applang[lang].search}
         </button>
       </form>

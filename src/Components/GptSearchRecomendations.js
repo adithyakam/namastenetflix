@@ -9,8 +9,8 @@ const GptSearchRecomendations = () => {
   );
 
   return (
-    <div className="absolute h-[80%] top-40 w-screen mx-auto  overflow-y-scroll">
-      <div className="relative mx-auto w-3/4  bg-black p-4 pb-40 bg-opacity-60 rounded-lg ">
+    <div className="absolute h-[40%] top-[60%] md:h-[80%] md:top-40 w-screen mx-auto  overflow-y-scroll">
+      <div className="relative mx-auto w-screen md:w-3/4  bg-black p-4 pb-40 bg-opacity-60 rounded-lg ">
         {
           //   <VideoCategoryContainer title="Horror" videos={horror} />
           movieNames?.map((movie, i) => {

@@ -51,15 +51,15 @@ const Header = () => {
     dispatch(changeLang(key));
   };
   return (
-    <div className="absolute p-10 h-10 z-20 flex justify-between items-center w-full bg-gradient-to-b from-black text-white">
+    <div className=" bg-gradient-to-b from-black items-center text-white flex flex-col w-full absolute p-10 h-10 z-20 md:flex md:flex-row md:justify-between md:items-center">
       <div className="">
         <img src={logo} className=" p-2" />
       </div>
       {user && (
-        <div className="flex m-1">
+        <div className="bg-black w-screen flex flex-col md:w-auto md:flex md:flex-row md:m-1">
           {isGptenabled && (
             <select
-              className="bg-red-600 p-2 rounded-lg ml-2"
+              className="bg-red-600 m-1 md:mt-0 p-2 rounded-lg ml-2"
               onChange={(e) => languageSel(e.target.value)}
             >
               {appLanguages.map((language) => {
@@ -82,7 +82,10 @@ const Header = () => {
             GPTSearch
           </button>
 
-          <img src={`${user.photoURL}`} alt="profile" className="mx-1" />
+          <div className="flex items-center justify-center">
+            <h3>Profile</h3>
+            <img src={`${user.photoURL}`} alt="profile" className="mx-1" />
+          </div>
           <button onClick={() => userSignOut()} className="text-white mx-1">
             SignOut
           </button>

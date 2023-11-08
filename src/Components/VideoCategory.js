@@ -11,7 +11,7 @@ const VideoCategory = () => {
   const thriller = useSelector((state) => state.nowPlaying.thriller);
 
   return (
-    <div className="bg-black relative w-screen">
+    <div className="bg-black  w-screen z-20 pt-[120%] md:pt-[30%]">
       {popularmovie && <VideoCategoryContainer title="Top" videos={top} main />}
       <VideoCategoryContainer title="Popular" videos={popularmovie} />
       <VideoCategoryContainer title="Action" videos={action} />

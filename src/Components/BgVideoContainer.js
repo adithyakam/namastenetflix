@@ -21,7 +21,7 @@ const BgVideoContainer = ({ mainmovie }) => {
         }
         title="YouTube video player"
         frameBorder="0"
-        className="w-screen aspect-video"
+        className=" absolute w-screen top-[30%] md:w-screen md:top-0 aspect-video"
         allow=" autoplay"
         allowfullscreen
       ></iframe>

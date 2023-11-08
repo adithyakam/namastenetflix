@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import Footer from "./Footer";
-import Login from "../Login";
+import Login from "../Components/Login";
 import Browse from "./Browse";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";

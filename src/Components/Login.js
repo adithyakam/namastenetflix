@@ -1,17 +1,17 @@
 import React, { useRef, useState } from "react";
-import { validation } from "./utils/validations";
+import { validation } from "../utils/validations";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 
-import { auth } from "./utils/firebase";
+import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Header from "./Components/Header";
-import { addUser } from "./Components/Redux/userSlice";
-import { userProfileimage } from "./utils/constants";
+import Header from "./Header";
+import { addUser } from "./Redux/userSlice";
+import { userProfileimage } from "../utils/constants";
 
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
@@ -90,17 +90,17 @@ const Login = () => {
   };
 
   return (
-    <div className="text-white">
+    <div className="text-white w-screen">
       <Header />
 
       <div>
         <img
-          className="w-full h-full "
+          className="w-screen h-screen "
           src="https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_large.jpg"
         />
       </div>
       <div className="absolute right-0 top-0 bg-gradient-to-b bg-slate-950 bg-opacity-50 w-full h-full"></div>
-      <div className="absolute top-0 mx-[40%] mt-[10%] w-96 mx- bg-gradient-to-b bg-black bg-opacity-80 flex flex-col flex-wrap z-10 p-2">
+      <div className="bg-gradient-to-b bg-black bg-opacity-80  absolute top-[10%] w-screen  md:top-0 md:mx-[40%] mt-[10%] md:w-96 mx- flex flex-col flex-wrap z-10 p-2">
         <form
           onSubmit={(e) => e.preventDefault()}
           className="z-10  flex flex-col flex-wrap p-8 "

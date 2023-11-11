@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import logo from "../assets/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "./Redux/userSlice";
@@ -9,11 +9,14 @@ import { useEffect } from "react";
 import { togglegptsearch } from "./Redux/gptSlice";
 import { appLanguages } from "../utils/appConfig";
 import { changeLang } from "./Redux/appConfigSlice";
+import profile from "../assets/profile.svg";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
   const lang = useSelector((state) => state.appconfig.lang);
   const isGptenabled = useSelector((state) => state.gpt.toggle);
+
+  const [isProfile, setisProfile] = useState(true);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -51,18 +54,18 @@ const Header = () => {
     dispatch(changeLang(key));
   };
   return (
-    <div className="w-screen bg-gradient-to-b from-black items-center text-white flex flex-col w-full absolute p-10 h-10 z-20 md:flex md:flex-row md:justify-between md:items-center">
-      <div className="">
+    <div className="w-screen bg-gradient-to-b from-black  text-white flex flex-row   flex-nowrap  absolute h-20 z-20 md:flex md:flex-row justify-between items-center">
+      <div className=" justify-start">
         <img
           src={logo}
-          className="absolute top-0 left-[25%] md:relative z-10 p-2"
+          className=" w-20 h-20 md:w-auto md:h-auto left-[25%] md:relative z-10 p-2"
         />
       </div>
       {user && (
-        <div className="bg-black absolute  -z-10 top-0 p-14 w-screen flex md:relative md:bg-transparent flex-col md:w-auto md:flex md:flex-row md:m-1">
+        <div className=" pr-5  flex justify-end  -z-10   md:relative md:bg-transparent  md:w-auto md:flex md:flex-row md:m-1">
           {isGptenabled && (
             <select
-              className="bg-red-600 m-1 md:mt-0 p-2 rounded-lg ml-2"
+              className="bg-red-600 text-xs md:text-base h-10 p-1 md:p-2 rounded-lg ml-2"
               onChange={(e) => languageSel(e.target.value)}
             >
               {appLanguages.map((language) => {
@@ -79,19 +82,39 @@ const Header = () => {
             </select>
           )}
           <button
-            className="bg-yellow-600 p-2 rounded-lg ml-2"
+            className="bg-yellow-600 text-xs md:text-base h-10 p-1 md:p-2 rounded-lg ml-2"
             onClick={() => dispatch(togglegptsearch())}
           >
             GPTSearch
           </button>
-
-          <div className="flex items-center justify-center">
-            <h3>Profile</h3>
-            <img src={`${user.photoURL}`} alt="profile" className="mx-1" />
+          <div
+            className="flex flex-col items-center"
+            onMouseOver={() => setisProfile(true)}
+            onClick={() => setisProfile(!isProfile)}
+            onMouseLeave={() => setisProfile(false)}
+          >
+            <div>
+              <img
+                src={profile}
+                alt="profile"
+                className="w-10 h-10 rounded-full bg-white ml-2"
+              />
+              {/* <img src={`${user.photoURL}`} alt="profile" className="mx-1" /> */}
+            </div>
+            {isProfile && (
+              <div className="bg-black absolute top-16 md:top-10 right-4 md:right-0 flex flex-col items-center justify-center rounded-md ">
+                <h3 className="hover:bg-slate-800 w-full p-2 mx-auto">
+                  Profile
+                </h3>
+                <button
+                  onClick={() => userSignOut()}
+                  className="text-white  hover:bg-slate-800 w-full p-2 mx-auto"
+                >
+                  SignOut
+                </button>
+              </div>
+            )}
           </div>
-          <button onClick={() => userSignOut()} className="text-white mx-1">
-            SignOut
-          </button>
         </div>
       )}
     </div>

@@ -85,7 +85,7 @@ const Header = () => {
             className="bg-yellow-600 text-xs md:text-base h-10 p-1 md:p-2 rounded-lg ml-2"
             onClick={() => dispatch(togglegptsearch())}
           >
-            GPTSearch
+            {isGptenabled ? "Home" : "GPTSearch"}
           </button>
           <div
             className="flex flex-col items-center"
@@ -102,7 +102,7 @@ const Header = () => {
               {/* <img src={`${user.photoURL}`} alt="profile" className="mx-1" /> */}
             </div>
             {isProfile && (
-              <div className="bg-black absolute top-16 md:top-10 right-4 md:right-0 flex flex-col items-center justify-center rounded-md ">
+              <div className=" bg-black absolute top-16 md:top-10 right-4 md:right-0 flex flex-col items-center justify-center rounded-md md:p-2 ">
                 <h3 className="hover:bg-slate-800 w-full p-2 mx-auto">
                   Profile
                 </h3>

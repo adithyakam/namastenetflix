@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { togglegptsearch } from "./Redux/gptSlice";
 import { appLanguages } from "../utils/appConfig";
-import { changeLang } from "./Redux/appConfigSlice";
+import { changeLang, setOtherURL } from "./Redux/appConfigSlice";
 import profile from "../assets/profile.svg";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
   const lang = useSelector((state) => state.appconfig.lang);
+  const otherurl = useSelector((state) => state.appconfig.otherURL);
+
   const isGptenabled = useSelector((state) => state.gpt.toggle);
 
   const [isProfile, setisProfile] = useState(true);
@@ -24,13 +26,14 @@ const Header = () => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const { uid, email, displayName } = user;
-        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
-        nav("/browse");
-      } else {
+      if (!user) {
         dispatch(removeUser());
         nav("/");
+      } else {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        if (!otherurl) nav("/browse");
+        // nav("/browse");
       }
     });
 
@@ -54,11 +57,15 @@ const Header = () => {
     dispatch(changeLang(key));
   };
   return (
-    <div className="w-screen bg-gradient-to-b from-black  text-white flex flex-row   flex-nowrap  absolute h-20 z-20 md:flex md:flex-row justify-between items-center">
+    <div className="w-screen md:p-5 lg:p-10 bg-gradient-to-b from-black  text-white flex flex-row   flex-nowrap  absolute h-20 z-20 md:flex md:flex-row justify-between items-center">
       <div className=" justify-start">
         <img
           src={logo}
-          className=" w-20 h-20 md:w-auto md:h-auto left-[25%] md:relative z-10 p-2"
+          className=" w-20 h-20 md:w-auto md:h-auto left-[25%] md:relative z-10 p-2 cursor-pointer"
+          onClick={() => {
+            dispatch(setOtherURL(false));
+            nav("/browse");
+          }}
         />
       </div>
       {user && (
@@ -81,12 +88,14 @@ const Header = () => {
               })}
             </select>
           )}
-          <button
-            className="bg-yellow-600 text-xs md:text-base h-10 p-1 md:p-2 rounded-lg ml-2"
-            onClick={() => dispatch(togglegptsearch())}
-          >
-            {isGptenabled ? "Home" : "GPTSearch"}
-          </button>
+          {!otherurl && (
+            <button
+              className="bg-yellow-600 text-xs md:text-base h-10 p-1 md:p-2 rounded-lg ml-2"
+              onClick={() => dispatch(togglegptsearch())}
+            >
+              {isGptenabled ? "Home" : "GPTSearch"}
+            </button>
+          )}
           <div
             className="flex flex-col items-center"
             onMouseOver={() => setisProfile(true)}

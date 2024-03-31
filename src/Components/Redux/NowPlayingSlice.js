@@ -9,6 +9,10 @@ const initialState = {
   horror: null,
   adventure: null,
   thriller: null,
+  movieInfo: null,
+  castInfo: null,
+  movieVideos: null,
+  castMovies: null,
 };
 
 const NowPlayingSlice = createSlice({
@@ -36,6 +40,27 @@ const NowPlayingSlice = createSlice({
     addThrillerMovie: (state, action) => {
       state.thriller = action.payload;
     },
+    addTrailerVideo: (state, action) => {
+      state.trailerVideo = action.payload;
+    },
+    addMovieInfo: (state, action) => {
+      state.movieInfo = action.payload;
+    },
+    clearMovieInfo: (state, action) => {
+      state.movieInfo = null;
+    },
+    addCastInfo: (state, action) => {
+      state.castInfo = action.payload;
+    },
+    addMovieVideos: (state, action) => {
+      state.movieVideos = action.payload;
+    },
+    addCastMovies: (state, action) => {
+      state.castMovies = action.payload;
+    },
+    clearCastMovies: (state, action) => {
+      state.castMovies = null;
+    },
   },
 });
 
@@ -47,5 +72,12 @@ export const {
   addVideo,
   addTopPlayes,
   addActionMovie,
+  addTrailerVideo,
+  addMovieInfo,
+  clearMovieInfo,
+  addCastInfo,
+  addMovieVideos,
+  addCastMovies,
+  clearCastMovies,
 } = NowPlayingSlice.actions;
 export default NowPlayingSlice.reducer;

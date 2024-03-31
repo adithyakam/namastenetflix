@@ -11,9 +11,12 @@ const appConfigSlice = createSlice({
     changeLang: (state, action) => {
       state.lang = action.payload;
     },
+    setOtherURL: (state, action) => {
+      state.otherURL = action.payload;
+    },
   },
 });
 
-export const { changeLang } = appConfigSlice.actions;
+export const { changeLang, setOtherURL } = appConfigSlice.actions;
 
 export default appConfigSlice.reducer;

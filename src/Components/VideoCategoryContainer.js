@@ -1,5 +1,6 @@
 import React from "react";
 import VideoCard from "./VideoCard";
+import { Link } from "react-router-dom";
 
 const VideoCategoryContainer = ({ title, videos, main }) => {
   return (
@@ -12,9 +13,13 @@ const VideoCategoryContainer = ({ title, videos, main }) => {
       <div className="flex overflow-x-scroll no-scrollbar">
         {videos?.map((movie) => {
           return main ? (
-            <VideoCard movie={movie} key={movie.id} main />
+            <Link to={"/movieinfo/" + movie?.id}>
+              <VideoCard movie={movie} key={movie.id} main />
+            </Link>
           ) : (
-            <VideoCard movie={movie} key={movie.id} />
+            <Link to={"/movieinfo/" + movie?.id}>
+              <VideoCard movie={movie} key={movie.id} />
+            </Link>
           );
         })}
       </div>

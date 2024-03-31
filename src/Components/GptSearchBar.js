@@ -30,7 +30,6 @@ const GptSearchBar = () => {
 
       const MovieArray = recommededNames?.map((movie) => searchMovie(movie));
       const tmdbres = await Promise.all(MovieArray);
-      console.log(tmdbres);
 
       dispatch(
         addMovieRecomendation({

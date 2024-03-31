@@ -5,7 +5,6 @@ import { tmdbapivid, tmdbgetoptions } from "../utils/constants";
 
 const useBgVideo = (id) => {
   const disptach = useDispatch();
-  //   console.log(id);
   const getVideo = async () => {
     await fetch(tmdbapivid + id + "/videos?language=en-US", tmdbgetoptions)
       .then((response) => response.json())

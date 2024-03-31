@@ -8,6 +8,7 @@ import MovieInfoContainer from "./MovieInfoContainer";
 import MovieCast from "../Components/MovieCast";
 import MovieVideos from "../Components/MovieVid";
 import { setOtherURL } from "../Components/Redux/appConfigSlice";
+import Shimmer from "./Shimmer";
 
 const MovieInfo = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,12 @@ const MovieInfo = () => {
   useMovieInfo(id);
 
   const info = useSelector((store) => store.nowPlaying.movieInfo);
-  if (!info) return <h1>Loading</h1>;
+  if (!info)
+    return (
+      <h1>
+        <Shimmer />
+      </h1>
+    );
 
   dispatch(setOtherURL(true));
 

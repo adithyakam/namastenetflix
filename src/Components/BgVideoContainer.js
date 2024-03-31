@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import useBgVideo from "../hooks/useBgVideo";
 
 const BgVideoContainer = ({ mainmovie }) => {
-  //   console.log(mainmovie);
   const vidId = useSelector((state) => state.nowPlaying.mainVideo);
 
   //   if (!vidId) return;

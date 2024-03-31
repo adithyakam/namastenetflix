@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import Header from "./Header";
 import {
   createBrowserRouter,
@@ -11,10 +11,11 @@ import Login from "../Components/Login";
 import Browse from "./Browse";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "./Redux/userSlice";
 import MovieInfo from "../Components/MovieInfo";
 import MoviesByActor from "../Components/MovieActor";
+import Shimmer from "../Components/Shimmer";
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,11 @@ const Body = () => {
     },
     {
       path: "/browse",
-      element: <Browse />,
+      element: (
+        <Suspense fallback={Shimmer}>
+          <Browse />
+        </Suspense>
+      ),
     },
     {
       path: "/movieinfo/:id",
@@ -37,6 +42,7 @@ const Body = () => {
       element: <MoviesByActor />,
     },
   ]);
+  const vid = useSelector((state) => state.nowPlaying.nowPlaying);
 
   return (
     <div>

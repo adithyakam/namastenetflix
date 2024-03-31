@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import VideoCard from "../Components/VideoCard";
 import Header from "../Components/Header";
 import { clearMovieInfo } from "../Components/Redux/NowPlayingSlice";
+import Shimmer from "./Shimmer";
 
 const MoviesByActor = () => {
   const { id } = useParams();
@@ -18,7 +19,13 @@ const MoviesByActor = () => {
   dispatch(clearMovieInfo());
 
   const moviesByActor = useSelector((store) => store.nowPlaying.castMovies);
-  if (!moviesByActor) return <h1>Loading</h1>;
+  if (!moviesByActor)
+    return (
+      <h1>
+        {" "}
+        <Shimmer />
+      </h1>
+    );
 
   return (
     <div>
@@ -33,7 +40,6 @@ const MoviesByActor = () => {
           {moviesByActor?.map((movie) => (
             <div>
               <Link to={"/movieinfo/" + movie?.id}>
-                {console.log(movie?.poster_path, "afdasdposter")}
                 <VideoCard key={movie?.id} movie={movie} />
               </Link>
             </div>

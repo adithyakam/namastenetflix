@@ -30,8 +30,5 @@ export async function chatQuery(query) {
   // return ans.message.content;
 
   //   for actual
-  console.log(chatCompletion.choices[0].message.content);
   return chatCompletion.choices[0].message.content;
-
-  //   console.log(chatCompletion.choices);
 }

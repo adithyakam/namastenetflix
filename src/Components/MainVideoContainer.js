@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 const MainVideoContainer = () => {
   const vid = useSelector((state) => state.nowPlaying.nowPlaying);
   if (vid == null) return;
-  // console.log(vid);
   const mainmovie = vid[0];
   return (
     <div className="w-screen">

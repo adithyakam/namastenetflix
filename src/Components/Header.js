@@ -18,7 +18,7 @@ const Header = () => {
 
   const isGptenabled = useSelector((state) => state.gpt.toggle);
 
-  const [isProfile, setisProfile] = useState(true);
+  const [isProfile, setisProfile] = useState(false);
 
   const dispatch = useDispatch();
   const nav = useNavigate();
